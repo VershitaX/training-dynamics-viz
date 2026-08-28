@@ -1,5 +1,7 @@
 # Training Dynamics Visualizer
 
+**[Try the live demo](https://training-dynamics-viz.streamlit.app/)** — scrub through training and watch a language model learn, no setup required.
+
 Watch a language model learn — checkpoint by checkpoint, from random noise
 to coherent-ish Shakespeare.
 
@@ -89,7 +91,7 @@ next-character prediction, with no explicit linguistic supervision.
 ## Interactive demo
 
 A live version (no setup required) is available at:
-**[link — add after deploying]**
+**[https://training-dynamics-viz.streamlit.app/](https://training-dynamics-viz.streamlit.app/)**
 
 If no checkpoint exists yet when the app loads, it will show an error
 asking you to run training first — this app does not auto-train a fallback
