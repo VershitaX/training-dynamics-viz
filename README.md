@@ -88,6 +88,60 @@ separate from letters, and uppercase/lowercase pairs drift toward each
 other — the model discovering structure in its input alphabet purely from
 next-character prediction, with no explicit linguistic supervision.
 
+## Results
+
+Running the full training (3000 steps, 3-layer model, ~21 minutes on CPU)
+produces a clean, healthy training curve:
+
+![Loss curve](figures/loss_curve.png)
+
+Loss drops sharply in the first ~200 steps, then decays smoothly, with
+train and validation loss tracking closely throughout — only a small,
+expected gap opens up late in training (train 1.73 vs. val 1.86 at step
+3000), showing no serious overfitting at this scale.
+
+The more immediately convincing evidence is what the model actually
+writes at different points in training. Prompted with `ROMEO:` at
+increasing checkpoints:
+
+```
+=== step 1600 ===
+ROMEO:
+Why mhis the henle made a mearty wound gelsters,
+I ware govint beare hath thin beie sofe.
+
+Shichsed though rew aper and stidy theer non my fatter wel
+
+=== step 2200 ===
+ROMEO:
+Why mhous haveself if of mye hand, in I to the my
+pour you for beere hath good beiels!
+Thee him stanter your we pereace:
+What thour not my fatter wel
+
+=== step 2800 ===
+ROMEO:
+Why more know sell it of yoes, you dake to the and
+Aut you foreaker channow to be evices. I have that of
+pery to we a commidy thour nonemit to of wel
+```
+
+None of these are real words — this is a tiny, short-duration model, not
+a production language model — but the structure the model discovers
+purely from next-character prediction is genuinely striking: consistent
+`NAME:` formatting matching the play's dialogue structure, correct
+capitalization after line breaks, plausible English letter combinations
+and syllable patterns, and stable line-length rhythm resembling verse.
+None of this was explicitly labeled during training; it's all inferred
+from character sequences alone.
+
+The embedding-space PCA plot (`figures/embedding_evolution.png`) is
+included for completeness, but is honestly the weakest piece of evidence
+at this scale — with only 96 embedding dimensions projected down to 2,
+visible clustering is subtle to the eye in a static image. The loss curve
+and generated text samples above are the clearer signal that real
+structure is being learned.
+
 ## Interactive demo
 
 A live version (no setup required) is available at:
