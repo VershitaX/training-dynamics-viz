@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+.DS_Store
+.ipynb_checkpoints/
+
+# Note: checkpoints/*.pt are intentionally NOT ignored — they're small
+# (~1-2MB each with default settings) and the live demo needs them.
